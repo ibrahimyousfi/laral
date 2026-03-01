@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Redirect all requests to public folder (cPanel: if document root is project root)
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Block direct access to sensitive files (extra security on shared hosting)
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+<Files ".env">
+    Require all denied
+</Files>
+<Files "*.env*">
+    Require all denied
+</Files>
