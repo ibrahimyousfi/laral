@@ -9,7 +9,7 @@ Laravel application with an **App** layout: sidebar, users (CRUD + pagination), 
 - PHP 8.2+
 - Composer
 - Node.js (optional, for frontend build if needed)
-- MySQL 5.7+ or MariaDB
+- MySQL 5.7+ or MariaDB (SQLite is not used)
 
 ---
 
