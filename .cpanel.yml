@@ -1,5 +1,10 @@
 ---
 deployment:
   tasks:
+    - cd /home/swissleg/laral.wieps
+    - git fetch origin
+    - git reset --hard origin/main
     - php artisan config:clear
     - php artisan cache:clear
+    - php artisan route:clear
+    - php artisan view:clear
