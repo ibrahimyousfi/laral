@@ -11,18 +11,18 @@
         <div>
             <label for="email" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Email') }}</label>
             <input type="email" name="email" id="email" value="{{ old('email') }}" required autofocus autocomplete="username"
-                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-gray-500 focus:border-transparent">
+                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 sm:py-2 text-base sm:text-sm focus:ring-2 focus:ring-gray-500 focus:border-transparent min-h-[44px] touch-manipulation">
         </div>
         <div>
             <label for="password" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Password') }}</label>
             <input type="password" name="password" id="password" required autocomplete="current-password"
-                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:ring-2 focus:ring-gray-500 focus:border-transparent">
+                class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 sm:py-2 text-base sm:text-sm focus:ring-2 focus:ring-gray-500 focus:border-transparent min-h-[44px] touch-manipulation">
         </div>
         <div class="flex items-center">
             <input type="checkbox" name="remember" id="remember" class="rounded border-gray-300 text-gray-600 focus:ring-gray-500">
             <label for="remember" class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</label>
         </div>
-        <button type="submit" class="w-full rounded-lg bg-gray-900 text-white font-medium py-2 px-4 hover:bg-gray-800 transition-colors">
+        <button type="submit" class="w-full rounded-lg bg-gray-900 text-white font-medium py-3 px-4 hover:bg-gray-800 transition-colors min-h-[48px] touch-manipulation">
             {{ __('Login') }}
         </button>
     </form>

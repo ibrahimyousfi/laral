@@ -8,7 +8,7 @@
 
 @php
     $tag = $href ? 'a' : $tag;
-    $base = 'inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none relative overflow-hidden';
+    $base = 'inline-flex items-center justify-center gap-2 font-medium rounded-full transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none relative overflow-hidden touch-manipulation min-h-[44px] sm:min-h-0';
     $hoverCircle = 'hover:before:scale-100 hover:before:opacity-100 before:absolute before:inset-0 before:rounded-full before:scale-0 before:opacity-0 before:transition-all before:duration-200 before:bg-black/10';
     $variants = [
         'primary' => 'bg-gray-900 text-white focus:ring-gray-500 ' . $hoverCircle,
@@ -21,7 +21,7 @@
         'md' => 'px-4 py-2 text-sm min-w-[2.5rem]',
         'lg' => 'px-5 py-2.5 text-base min-w-[3rem]',
     ];
-    $iconOnlyClasses = '!p-0 w-9 h-9 !min-w-0 border border-gray-200 hover:border-gray-300';
+    $iconOnlyClasses = '!p-0 w-10 h-10 sm:w-9 sm:h-9 !min-w-0 border border-gray-200 hover:border-gray-300 touch-manipulation';
     $iconSize = ['sm' => 'w-4 h-4', 'md' => 'w-4 h-4', 'lg' => 'w-5 h-5'];
     $classes = $base . ' ' . ($variants[$variant] ?? $variants['primary']) . ' ' . ($sizes[$size] ?? $sizes['md']);
     if ($iconOnly) {

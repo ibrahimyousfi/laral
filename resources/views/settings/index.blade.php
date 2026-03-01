@@ -7,18 +7,18 @@
 @endphp
 
 @section('content')
-<div class="max-w-3xl space-y-6">
-    <form action="{{ route('dashboard.settings.update') }}" method="post" enctype="multipart/form-data" class="space-y-6">
+<div class="max-w-3xl space-y-4 sm:space-y-6 min-w-0">
+    <form action="{{ route('dashboard.settings.update') }}" method="post" enctype="multipart/form-data" class="space-y-4 sm:space-y-6">
         @csrf
         @method('put')
 
-        <div class="bg-white rounded-xl border border-gray-200 p-6">
+        <div class="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
             <h2 class="text-lg font-semibold mb-4">{{ __('Application') }}</h2>
             <div class="space-y-4">
                 <div>
                     <label for="app_name" class="block text-sm font-medium text-gray-700 mb-1">{{ __('App name') }}</label>
                     <input type="text" name="app_name" id="app_name" value="{{ old('app_name', $app_name) }}" required
-                        class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm">
+                        class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 sm:py-2 text-base sm:text-sm min-h-[44px] touch-manipulation">
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
@@ -46,7 +46,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                     <label for="currency" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Currency') }}</label>
-                    <select name="currency" id="currency" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm">
+                    <select name="currency" id="currency" class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 sm:py-2 text-base sm:text-sm min-h-[44px] touch-manipulation">
                         @foreach($currencies as $code => $label)
                             <option value="{{ $code }}" {{ old('currency', $currency) === $code ? 'selected' : '' }}>{{ $label }}</option>
                         @endforeach
@@ -55,7 +55,7 @@
                 <div>
                     <label for="currency_symbol" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Currency symbol') }}</label>
                     <input type="text" name="currency_symbol" id="currency_symbol" value="{{ old('currency_symbol', $currency_symbol) }}" maxlength="10"
-                        class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm">
+                        class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 sm:py-2 text-base sm:text-sm min-h-[44px] touch-manipulation">
                 </div>
             </div>
         </div>
@@ -66,12 +66,12 @@
                 <div>
                     <label for="timezone" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Timezone') }}</label>
                     <input type="text" name="timezone" id="timezone" value="{{ old('timezone', $timezone) }}"
-                        class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm" placeholder="UTC">
+                        class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 sm:py-2 text-base sm:text-sm min-h-[44px] touch-manipulation" placeholder="UTC">
                 </div>
                 <div>
                     <label for="date_format" class="block text-sm font-medium text-gray-700 mb-1">{{ __('Date format') }}</label>
                     <input type="text" name="date_format" id="date_format" value="{{ old('date_format', $date_format) }}"
-                        class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm" placeholder="Y-m-d">
+                        class="w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 sm:py-2 text-base sm:text-sm min-h-[44px] touch-manipulation" placeholder="Y-m-d">
                 </div>
             </div>
         </div>

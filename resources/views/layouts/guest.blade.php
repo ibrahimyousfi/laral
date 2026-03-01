@@ -7,10 +7,15 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @supports (padding: env(safe-area-inset-bottom)) {
+            body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); padding-bottom: env(safe-area-inset-bottom); }
+        }
+    </style>
     @stack('styles')
 </head>
 <body class="bg-white text-gray-900 antialiased min-h-screen flex items-center justify-center p-4">
-    <div class="w-full max-w-md">
+    <div class="w-full max-w-md min-w-0">
         <a href="{{ route('home') }}" class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700  mb-6">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
             {{ __('Back to home') }}

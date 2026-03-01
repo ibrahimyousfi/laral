@@ -6,7 +6,7 @@
 
 <{{ $tag }}
     @if($href) href="{{ $href }}" @endif
-    {{ $attributes->merge(['class' => 'block w-full bg-white rounded-xl border border-gray-200 p-4 hover:border-gray-300 transition-colors']) }}
+    {{ $attributes->merge(['class' => 'block w-full bg-white rounded-xl border border-gray-200 p-3 sm:p-4 hover:border-gray-300 transition-colors min-w-0']) }}
 >
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div class="flex-1 min-w-0">

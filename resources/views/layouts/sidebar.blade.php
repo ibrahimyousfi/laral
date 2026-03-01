@@ -1,8 +1,8 @@
-{{-- Sidebar: collapsible, logo + toggle at top, default collapsed --}}
+{{-- Sidebar: on mobile = drawer overlay; on md+ = collapsible --}}
 <aside
     id="sidebar"
-    class="fixed top-0 left-0 z-40 h-screen flex flex-col bg-white border-r border-gray-200 transition-all duration-300 ease-in-out"
-    :class="sidebarOpen ? 'w-56' : 'w-16'"
+    class="fixed top-0 left-0 z-50 h-screen flex flex-col bg-white border-r border-gray-200 transition-all duration-300 ease-in-out w-64 -translate-x-full md:translate-x-0 md:w-16"
+    :class="sidebarOpen ? 'translate-x-0 md:w-56' : ''"
     @mouseenter="sidebarHover = true"
     @mouseleave="sidebarHover = false"
 >
@@ -16,7 +16,7 @@
     <div class="flex items-center gap-3 h-14 px-3 border-b border-gray-200 shrink-0 min-w-0">
         <button
             type="button"
-            class="shrink-0 w-9 h-9 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors relative"
+            class="shrink-0 w-10 h-10 md:w-9 md:h-9 rounded-lg flex items-center justify-center text-gray-500 hover:bg-gray-100 transition-colors relative touch-manipulation"
             @click.stop="sidebarOpen = !sidebarOpen"
             :aria-label="sidebarOpen ? 'Close sidebar' : 'Open sidebar'"
         >
@@ -43,10 +43,10 @@
             @endif
         </a>
     </div>
-    <nav class="flex-1 overflow-y-auto py-3 px-2">
+    <nav class="flex-1 overflow-y-auto py-3 px-2 -webkit-overflow-scrolling-touch">
         <ul class="space-y-0.5">
             <li>
-                <a href="{{ route('dashboard.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                <a href="{{ route('dashboard.index') }}" class="flex items-center gap-3 px-3 py-3 md:py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors touch-manipulation active:bg-gray-100" @click="sidebarOpen = false">
                     <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" /></svg>
                     <span class="truncate" :class="sidebarOpen ? 'opacity-100' : 'opacity-0 w-0 overflow-hidden'">App</span>
                 </a>
@@ -58,7 +58,7 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('dashboard.expenses.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors">
+                <a href="{{ route('dashboard.expenses.index') }}" class="flex items-center gap-3 px-3 py-3 md:py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors touch-manipulation active:bg-gray-100" @click="sidebarOpen = false">
                     <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                     <span class="truncate" :class="sidebarOpen ? 'opacity-100' : 'opacity-0 w-0 overflow-hidden'">Expenses</span>
                 </a>
@@ -72,7 +72,7 @@
             <li class="mt-auto pt-3 border-t border-gray-200">
                 <form action="{{ route('logout') }}" method="post" class="block">
                     @csrf
-                    <button type="submit" class="flex w-full items-center gap-3 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-left">
+                    <button type="submit" class="flex w-full items-center gap-3 px-3 py-3 md:py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors text-left touch-manipulation">
                         <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" /></svg>
                         <span class="truncate" :class="sidebarOpen ? 'opacity-100' : 'opacity-0 w-0 overflow-hidden'">{{ __('Logout') }}</span>
                     </button>
