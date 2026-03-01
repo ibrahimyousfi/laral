@@ -1,59 +1,133 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laral
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Laravel application with an **App** layout: sidebar, users (CRUD + pagination), expenses, settings (currency, logo, timezone), and authentication.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requirements
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- PHP 8.2+
+- Composer
+- Node.js (optional, for frontend build if needed)
+- MySQL, SQLite, or PostgreSQL
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Installation
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 1. Clone the repository
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```bash
+git clone https://github.com/ibrahimyousfi/laral.git
+cd laral
+```
 
-## Laravel Sponsors
+### 2. Install dependencies
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```bash
+composer install
+```
 
-### Premium Partners
+### 3. Environment file
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Contributing
+Edit `.env` and set your database and `APP_URL`:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```env
+APP_NAME="Laral"
+APP_URL=http://localhost:8000
 
-## Code of Conduct
+DB_CONNECTION=sqlite
+# or MySQL:
+# DB_CONNECTION=mysql
+# DB_HOST=127.0.0.1
+# DB_DATABASE=laral
+# DB_USERNAME=root
+# DB_PASSWORD=
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+For SQLite, create the database file:
 
-## Security Vulnerabilities
+```bash
+touch database/database.sqlite
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. Run migrations
+
+```bash
+php artisan migrate
+```
+
+### 5. Seed data (optional)
+
+```bash
+php artisan db:seed --class=SettingSeeder
+php artisan db:seed --class=UserSeeder
+```
+
+Create the storage link for uploaded files (logo, icon):
+
+```bash
+php artisan storage:link
+```
+
+### 6. Run the application
+
+```bash
+php artisan serve
+```
+
+Open **http://127.0.0.1:8000** in your browser.
+
+---
+
+## Main URLs
+
+| URL | Description |
+|-----|-------------|
+| `/` | Home (welcome) |
+| `/login` | Login |
+| `/register` | Register |
+| `/app` | App home (requires auth) |
+| `/app/users` | Users list (12 per page, pagination) |
+| `/app/users/create` | Create user |
+| `/app/users/{id}/edit` | Edit user |
+| `/app/expenses` | Expenses list |
+| `/app/settings` | App settings (name, logo, icon, currency, timezone) |
+
+---
+
+## Project structure
+
+- **Layout:** `resources/views/layouts/app.blade.php` — main layout for all app pages (sidebar + header + content). Fallback title: "App".
+- **Routes:** Split by section in `routes/` — `web.php`, `auth.php`, `dashboard.php`, and `routes/dashboard/*.php` for users, expenses, settings. All app routes use prefix **`/app`**.
+- **Views:** One Blade file per page under `resources/views/` (e.g. `users/index.blade.php`, `settings/index.blade.php`).
+- **Reusable components:** In `resources/views/components/`:
+  - `button`, `navbar-add-button` — buttons (including icon-only with border)
+  - `card-row` — horizontal card wrapper
+  - `card-row-body` — card content (title, subtitle, image, badges)
+  - `card-actions` — edit/delete icon buttons for cards
+  - `pagination` — pagination links (previous, page numbers, next)
+  - `badge` — small badges (default, success, danger, warning)
+
+---
+
+## Deployment (cPanel)
+
+1. Upload the full project (e.g. in a folder outside `public_html`).
+2. Set **Document Root** to the project’s **`public`** folder (e.g. `/home/username/laral/public`).
+3. Set permissions: `storage` and `bootstrap/cache` writable (e.g. 775).
+4. Copy `.env.example` to `.env`, set `APP_ENV=production`, `APP_DEBUG=false`, and production `APP_URL` and database.
+5. Run `php artisan migrate --force`, seeders if needed, and `php artisan storage:link`.
+
+See **CPANEL_DEPLOY.md** for detailed steps.
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-sourced under the [MIT license](https://opensource.org/licenses/MIT).
