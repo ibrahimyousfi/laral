@@ -9,7 +9,7 @@ Laravel application with an **App** layout: sidebar, users (CRUD + pagination), 
 - PHP 8.2+
 - Composer
 - Node.js (optional, for frontend build if needed)
-- MySQL, SQLite, or PostgreSQL
+- MySQL 5.7+ or MariaDB
 
 ---
 
@@ -41,28 +41,24 @@ Edit `.env` and set your database and `APP_URL`:
 APP_NAME="Laral"
 APP_URL=http://localhost:8000
 
-DB_CONNECTION=sqlite
-# or MySQL:
-# DB_CONNECTION=mysql
-# DB_HOST=127.0.0.1
-# DB_DATABASE=laral
-# DB_USERNAME=root
-# DB_PASSWORD=
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laral
+DB_USERNAME=root
+DB_PASSWORD=
 ```
 
-For SQLite, create the database file:
+Create the MySQL database, then run migrations:
 
 ```bash
-touch database/database.sqlite
-```
-
-### 4. Run migrations
-
-```bash
+php create_db.php
 php artisan migrate
 ```
 
-### 5. Seed data (optional)
+(The script `create_db.php` creates the database from your `.env` DB_* settings.)
+
+### 4. Seed data (optional)
 
 ```bash
 php artisan db:seed --class=SettingSeeder
@@ -75,7 +71,7 @@ Create the storage link for uploaded files (logo, icon):
 php artisan storage:link
 ```
 
-### 6. Run the application
+### 5. Run the application
 
 ```bash
 php artisan serve
