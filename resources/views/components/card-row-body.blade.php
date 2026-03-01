@@ -24,7 +24,7 @@
             @if(isset($leading))
                 {{ $leading }}
             @elseif($image)
-                <img src="{{ $image }}" alt="" class="w-10 h-10 rounded-lg object-cover bg-gray-100 dark:bg-gray-700" />
+                <img src="{{ $image }}" alt="" class="w-10 h-10 rounded-lg object-cover bg-gray-100" />
             @endif
         </div>
     @endif
@@ -34,12 +34,12 @@
             {{ $slot }}
         @else
             @if(filled($title))
-                <div class="font-medium text-gray-900 dark:text-white truncate">
+                <div class="font-medium text-gray-900 truncate">
                     {{ $title }}
                 </div>
             @endif
             @if(filled($subtitle))
-                <div class="text-sm text-gray-500 dark:text-gray-400 flex flex-wrap items-center gap-x-3 gap-y-0.5">
+                <div class="text-sm text-gray-500 flex flex-wrap items-center gap-x-3 gap-y-0.5">
                     {{ $subtitle }}
                 </div>
             @endif
